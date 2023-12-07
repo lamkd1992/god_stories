@@ -5,6 +5,10 @@
 -   PostgreSQL
 
 ### Docker
+-   Copy environments
+```
+$ cp .env.example .env
+```
 
 -   Build docker image
 
@@ -34,6 +38,7 @@ $ .docker/bash
 
 ```
 $ composer install                   # Install composer
+$ php artisan key:generate           # Set the application key
 $ php artisan migrate:refresh --seed # Migrate DB
 ```
 
