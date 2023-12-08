@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('story_details', function (Blueprint $table) {
+        Schema::create('cash_logs', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('story_id')->cascadeOnDelete();
-            $table->integer('chapters');
-            $table->string('title');
-            $table->text('content');
-            $table->string('translator');
+            $table->foreignId('user_id')->cascadeOnDelete();
+            $table->foreignId('coupon_id')->nullable()->cascadeOnDelete();
+            $table->bigInteger('amount');
+            $table->dateTime('cash_time');
             $table->timestamps();
-
-            $table->index('chapters');
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('story_details');
+        Schema::dropIfExists('cash_logs');
     }
 };

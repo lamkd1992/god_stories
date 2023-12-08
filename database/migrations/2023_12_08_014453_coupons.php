@@ -11,17 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('coupons', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('email');
-            $table->string('password');
-            $table->string('full_name')->nullable();
-            $table->string('phone', 13)->nullable();
-            $table->string('avatar')->nullable();
-            $table->bigInteger('remaining_amount')->default(0);
+            $table->string('description')->nullable();
+            $table->dateTime('start_date')->nullable();
+            $table->dateTime('end_date')->nullable();
+            $table->tinyInteger('type')->default(0)->comment('1: forever\n1: event');
+            $table->Integer('value')->comment('Value of coupons');
             $table->timestamps();
-            $table->softDeletes();
         });
     }
 
@@ -30,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('coupons');
     }
 };
